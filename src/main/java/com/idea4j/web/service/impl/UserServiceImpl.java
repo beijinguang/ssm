@@ -1,8 +1,8 @@
-package com.idea4j.service.impl;
+package com.idea4j.web.service.impl;
 
-import com.idea4j.dao.UserDAO;
-import com.idea4j.entity.User;
-import com.idea4j.service.UserService;
+import com.idea4j.web.dao.UserDAO;
+import com.idea4j.web.entity.User;
+import com.idea4j.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

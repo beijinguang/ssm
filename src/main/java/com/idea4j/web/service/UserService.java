@@ -1,7 +1,6 @@
-package com.idea4j.service;
+package com.idea4j.web.service;
 
-import com.idea4j.entity.User;
-import org.springframework.stereotype.Service;
+import com.idea4j.web.entity.User;
 
 /**
  * Created by wangjinguang on 16/8/1.

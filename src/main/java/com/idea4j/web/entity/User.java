@@ -1,4 +1,4 @@
-package com.idea4j.entity;
+package com.idea4j.web.entity;
 
 /**
  * Created by wangjinguang on 16/8/1.

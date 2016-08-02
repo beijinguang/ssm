@@ -1,6 +1,6 @@
-package com.idea4j.dao;
+package com.idea4j.web.dao;
 
-import com.idea4j.entity.User;
+import com.idea4j.web.entity.User;
 
 /**
  * Created by wangjinguang on 16/8/1.
