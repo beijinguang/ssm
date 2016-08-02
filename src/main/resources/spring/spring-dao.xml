@@ -19,7 +19,7 @@
         <!-- 基本属性 url、user、password -->
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&amp;characterEncoding=utf-8" />
         <property name="username" value="root" />
-        <property name="password" value="" />
+        <property name="password" value="root" />
 
         <!-- 配置初始化大小、最小、最大 -->
         <property name="initialSize" value="3" />
@@ -45,6 +45,7 @@
         <property name="maxPoolPreparedStatementPerConnectionSize" value="20" /> -->
 
         <!-- 配置监控统计拦截的filters -->
+
         <property name="filters" value="stat" />
     </bean>
 
@@ -56,7 +57,7 @@
         <!-- 配置MyBatis全局配置文件:mybatis-config.xml -->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!-- 扫描entity包 使用别名 -->
-        <property name="typeAliasesPackage" value="com.idea4j.entity"/>
+        <property name="typeAliasesPackage" value="com.idea4j.web.entity"/>
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
@@ -66,7 +67,7 @@
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描Dao接口包 -->
-        <property name="basePackage" value="com.idea4j.dao"/>
+        <property name="basePackage" value="com.idea4j.web.dao"/>
     </bean>
 
 </beans>
