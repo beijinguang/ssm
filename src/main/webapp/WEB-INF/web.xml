@@ -27,17 +27,6 @@
         <!-- 默认匹配所有的请求 -->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    <!--展示Druid的统计信息-->
-    <!--具体可以看官网信息：https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_StatViewServlet%E9%85%8D%E7%BD%AE-->
-    <servlet>
-        <servlet-name>DruidStatView</servlet-name>
-        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DruidStatView</servlet-name>
-        <!--访问路径eg：http://localhost:8086/druid/index.html -->
-        <url-pattern>/druid/*</url-pattern>
-    </servlet-mapping>
     <filter>
         <filter-name>defendXssFilter</filter-name>
         <filter-class>com.idea4j.common.filter.XssFilter</filter-class>
