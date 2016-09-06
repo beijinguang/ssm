@@ -12,7 +12,7 @@
 
     <!-- 2:数据库连接池 -->
     <!-- 数据源配置, 使用 BoneCP 数据库连接池 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+    <bean id="dataSourcedefault" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 数据源驱动类可不写，Druid默认会自动根据URL识别DriverClass -->
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
 
@@ -47,6 +47,27 @@
         <!-- 配置监控统计拦截的filters -->
 
         <property name="filters" value="stat" />
+    </bean>
+
+    <bean id="dataSource1" parent="dataSourcedefault">
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/bkytest?useUnicode=true&amp;characterEncoding=utf-8" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
+    </bean>
+    <bean id="dataSource2" parent="dataSourcedefault">
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&amp;characterEncoding=utf-8" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
+    </bean>
+
+    <bean id="dataSource" class="com.idea4j.common.datasource.ShardDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="db1" value-ref="dataSource1" />
+                <entry key="db2" value-ref="dataSource2" />
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="dataSource1" />
     </bean>
 
     <!-- 约定大于配置 -->
