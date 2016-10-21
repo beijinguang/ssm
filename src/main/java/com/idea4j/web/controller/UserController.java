@@ -3,6 +3,7 @@ package com.idea4j.web.controller;
 import com.idea4j.web.entity.User;
 import com.idea4j.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
+    @Qualifier("userServiceImpl")
     private UserService userService;
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)

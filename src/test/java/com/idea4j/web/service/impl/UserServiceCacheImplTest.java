@@ -1,5 +1,6 @@
 package com.idea4j.web.service.impl;
 
+import com.idea4j.common.datasource.DataSourceContextHolder;
 import com.idea4j.web.dao.UserDAO;
 import com.idea4j.web.entity.User;
 import com.idea4j.web.service.UserService;
@@ -25,6 +26,7 @@ public class UserServiceCacheImplTest {
     UserService userService;
     @Test
     public void findById() throws Exception {
+        DataSourceContextHolder.setDb("db2");
         User user = userService.findById(1);
         assertEquals(user.getName(),"123");
     }

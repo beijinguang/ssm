@@ -188,5 +188,53 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <!--设置自动替换-->
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>conf/config.properties</include>
+                </includes>
+                <!--也可以用排除标签-->
+                <!--<excludes></excludes>-->
+                <!--开启过滤-->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
+    <profiles>
+        <profile>
+            <id>product</id>
+            <build>
+                <filters>
+                    <filter>${basedir}/src/main/resources/environments/config-product.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>test</id>
+            <build>
+                <filters>
+                    <filter>${basedir}/src/main/resources/environments/config-test.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <filters>
+                    <filter>${basedir}/src/main/resources/environments/config-dev.properties</filter>
+                </filters>
+            </build>
+        </profile>
+    </profiles>
 </project>
