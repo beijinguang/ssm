@@ -2,6 +2,11 @@ package com.idea4j.common.nosql.ssdb;
 
 import java.util.*;
 
+/**
+ *
+ * @author markee
+ * @date 2023-09-28 14:42 2023-09-28 14:45
+ */
 public class Response{
 	public String status;
 	public List<byte[]> raw;
@@ -29,12 +34,13 @@ public class Response{
 		}
 	}
 
+
 	public boolean ok(){
-		return status.equals("ok");
+		return "ok".equals(status);
 	}
 
 	public boolean not_found(){
-		return status.equals("not_found");
+		return "not_found".equals(status);
 	}
 
 	public void buildMap(){
@@ -46,14 +52,4 @@ public class Response{
 		}
 	}
 
-	public void print(){
-		System.out.println(String.format("%-15s %s", "key", "value"));
-		System.out.println("---------------------");
-		for (byte[] bs : keys) {
-			System.out.print(String.format("%-15s", MemoryStream.repr(bs)));
-			System.out.print(": ");
-			System.out.print(MemoryStream.repr(items.get(bs)));
-			System.out.println();
-		}
-	}
 }

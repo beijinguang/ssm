@@ -5,7 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * Created by markee on 2016/8/2.
+ *
+ * @author markee
+ * @date 2016/8/2
  */
 public class XssFilter implements Filter {
     FilterConfig filterConfig = null;

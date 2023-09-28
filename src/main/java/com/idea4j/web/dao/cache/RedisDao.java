@@ -4,6 +4,7 @@ import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
 import com.idea4j.web.entity.User;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -11,11 +12,14 @@ import redis.clients.jedis.JedisPool;
 
 /**
  * 处理user的缓存类
+ * @date 2023-09-28 14:46
+ * @author markee
  */
 @Deprecated
+@Slf4j
 public class RedisDao {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private final JedisPool jedisPool;
     public RedisDao(String ip, int port) {
         jedisPool = new JedisPool(ip, port);
@@ -42,7 +46,7 @@ public class RedisDao {
                 jedis.close();
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -63,7 +67,7 @@ public class RedisDao {
                 jedis.close();
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }

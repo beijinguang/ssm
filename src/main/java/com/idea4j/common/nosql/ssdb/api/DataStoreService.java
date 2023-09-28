@@ -1,9 +1,11 @@
 package com.idea4j.common.nosql.ssdb.api;
 
 
+import com.google.common.base.Objects;
 import com.idea4j.common.nosql.ssdb.ConcurrentHashSet;
 import com.idea4j.common.nosql.ssdb.Response;
 import com.idea4j.common.nosql.ssdb.SSDB;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+@Slf4j
 public class DataStoreService {
 	private SSDBProxy[] ssdbs;
 	private static ConcurrentHashSet<DataStoreService> serviceSet = new ConcurrentHashSet<DataStoreService>();
@@ -112,7 +115,7 @@ public class DataStoreService {
 				ssdb.set("test", "TS"+curr + "");
 				long v = Long.parseLong(ssdb.get("test").replace("TS", ""));
 				if (v < curr - 60 * 1000 * 5) {
-					//throw new RuntimeException();
+					throw new RuntimeException();
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -195,23 +198,25 @@ public class DataStoreService {
 		return rtnList;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		DataStoreService that = (DataStoreService) o;
+		return POOLSIZE == that.POOLSIZE && serverport == that.serverport && Objects.equal(ssdbs, that.ssdbs) && Objects.equal(serverip, that.serverip);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(ssdbs, POOLSIZE, serverip, serverport);
+	}
+
 	public static void main(String[] args) {
 		final DataStoreService dataStoreService = new DataStoreService(
 				"192.168.50.35", 8888);
 		try {
-			// dataStoreService.getSSDBProxy().setx("bb", "aa", 100);
-			// dataStoreService.getSSDBProxy().hclear("usercenter");
-
-			// String a = dataStoreService.getSSDBProxy().h_get("rmobile",
-			// "15801794030");
-			// System.out.println(a);
-
-			// String b = dataStoreService.getSSDBProxy().ttl("qqqqq");
-			// System.out.println(b);
-
 			String amount = dataStoreService.getSSDBProxy().get("wkDealCount");
-			System.out.println("amount---->" + amount);
-
+			log.info("amount:{}",amount);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

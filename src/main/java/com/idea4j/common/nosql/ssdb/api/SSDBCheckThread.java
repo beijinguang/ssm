@@ -9,6 +9,7 @@ public class SSDBCheckThread extends Thread {
         this.setName("ssdb-check-thread");
     }
 
+    @Override
     public void run() {
         // this.setDaemon(true);
         try {

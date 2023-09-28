@@ -1,20 +1,25 @@
 package com.idea4j.common.datasource;
 
 /**
- * Created by markee on 2016/9/6.
+ *
+ * @author markee
+ * @date 2016/9/6
  */
 public class DataSourceContextHolder {
-    private static final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
+    private DataSourceContextHolder() {
+    }
+
+    private static final ThreadLocal<String> CONTEXT_HOLDER = new ThreadLocal<String>();
 
     public static void setDb(String db) {
-        contextHolder.set(db);
+        CONTEXT_HOLDER.set(db);
     }
 
     public static String getDb() {
-        return ((String) contextHolder.get());
+        return ((String) CONTEXT_HOLDER.get());
     }
 
     public static void clearDb() {
-        contextHolder.remove();
+        CONTEXT_HOLDER.remove();
     }
 }

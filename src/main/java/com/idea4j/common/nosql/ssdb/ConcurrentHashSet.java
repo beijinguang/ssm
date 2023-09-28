@@ -7,7 +7,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Copy from jbosscache2.0.0GA.
- * 
  * A simple Set implementation backed by a
  * {@link ConcurrentHashMap} to deal with the fact that the
  * JDK does not have a proper concurrent Set implementation that uses efficient
@@ -19,6 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 
  * @param <E>
  *            element type
+ * @date 2023-09-28 14:29
  */
 public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	/**
@@ -40,6 +40,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 * 
 	 * @return size
 	 */
+	@Override
 	public int size() {
 		return map.size();
 	}
@@ -49,6 +50,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 * 
 	 * @return map.isEmpty()
 	 */
+	@Override
 	public boolean isEmpty() {
 		return map.isEmpty();
 	}
@@ -60,6 +62,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 *            object
 	 * @return map.containsKey();
 	 */
+	@Override
 	public boolean contains(final Object o) {
 		return map.containsKey(o);
 	}
@@ -69,6 +72,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 * 
 	 * @return map.iterator();
 	 */
+	@Override
 	public Iterator<E> iterator() {
 		return map.keySet().iterator();
 	}
@@ -78,6 +82,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 * 
 	 * @return map.keySet().toArray();
 	 */
+	@Override
 	public Object[] toArray() {
 		return map.keySet().toArray();
 	}
@@ -92,6 +97,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 *            ������͵�����
 	 * @return map.keySet().toArray(a);
 	 */
+	@Override
 	public <T> T[] toArray(final T[] a) {
 		return map.keySet().toArray(a);
 	}
@@ -104,6 +110,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 * 
 	 * @return true ������Ŀ, false �滻
 	 */
+	@Override
 	public boolean add(final E o) {
 		Object v = map.put(o, DUMMY);
 		return v == null;
@@ -116,6 +123,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 *            element to remove
 	 * @return true �ҵ���ɾ��; ����false
 	 */
+	@Override
 	public boolean remove(final Object o) {
 		Object v = map.remove(o);
 		return v != null;
@@ -128,6 +136,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 *            collections
 	 * @return true : ����; false: ������
 	 */
+	@Override
 	public boolean containsAll(final Collection<?> c) {
 		return map.keySet().containsAll(c);
 	}
@@ -139,6 +148,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 *            ����
 	 * @return always true
 	 */
+	@Override
 	public boolean addAll(final Collection<? extends E> c) {
 		for (E e : c) {
 			add(e);
@@ -153,6 +163,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 *            collections
 	 * @return flag
 	 */
+	@Override
 	public boolean retainAll(final Collection<?> c) {
 		throw new UnsupportedOperationException("Not supported in this implementation.");
 	}
@@ -165,6 +176,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	 * 
 	 * @return always true
 	 */
+	@Override
 	public boolean removeAll(final Collection<?> c) {
 		for (Object e : c) {
 			remove(e);
@@ -175,7 +187,9 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	/**
 	 * clear().
 	 */
+	@Override
 	public void clear() {
 		map.clear();
 	}
+
 }

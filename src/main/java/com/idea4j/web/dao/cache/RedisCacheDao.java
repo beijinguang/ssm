@@ -60,29 +60,5 @@ public class RedisCacheDao<T> {
         }
         return null;
     }
-//-------------------------------------------------------------------------------------------------------
-//    public String  put (User user){
-//        Jedis jedis = jedisPool.getResource();
-//        String key = user.getClass() + ";" + user.getId();
-//        RuntimeSchema schema = RuntimeSchema.createFrom(user.getClass());
-//        byte[] bytes = ProtostuffIOUtil.toByteArray(user, schema,
-//                LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE));
-//        //超时缓存
-//        int timeout = 60 * 60;//1小时
-//        String result = jedis.setex(key.getBytes(), timeout, bytes);
-//        return result;
-//    }
 
-//    public User get(Class<User> userClass, long id) {
-//        Jedis jedis = jedisPool.getResource();
-//        String key = userClass.getName() + ";" + id;
-//        byte[] bytes = jedis.get(key.getBytes());
-//        if (bytes != null) {
-//            RuntimeSchema<User> schema = RuntimeSchema.createFrom(User.class);
-//            User u = schema.newMessage();
-//            ProtostuffIOUtil.mergeFrom(bytes, u, schema);
-//            return u;
-//        }
-//        return null;
-//    }
 }

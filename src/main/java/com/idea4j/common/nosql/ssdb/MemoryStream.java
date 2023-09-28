@@ -34,10 +34,9 @@ public class MemoryStream {
 	}
 
 	public static String repr(byte[] bs){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for(int i=0; i<bs.length; i++){
 			char b = (char)bs[i];
-			//byte b = buf[i];
 			if(b == '\r'){
 				sb.append("\\r");
 			}else if(b == '\n'){

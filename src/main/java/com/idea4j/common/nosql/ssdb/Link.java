@@ -1,5 +1,7 @@
 package com.idea4j.common.nosql.ssdb;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -7,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 public class Link {
 	private Socket sock;
 	private MemoryStream input = new MemoryStream();
@@ -88,20 +91,19 @@ public class Link {
 			}
 			byte[] bs = new byte[8192];
 			int len = is.read(bs);
-			//System.out.println("<< " + (new MemoryStream(bs, 0, len)).printable());
 			input.write(bs, 0, len);
 		}
 	}
 
 	public void testRead(byte[] data) throws Exception{
 		input.write(data, 0, data.length);
-		System.out.println("<< " +input.repr());
+		log.info("<< " +input.repr());
 
 		List<byte[]> ret = parse();
 		if(ret != null){
-			System.out.println("---------------------");
+			log.info("---------------------");
 			for (byte[] bs : ret) {
-				System.out.println(String.format("%-15s", MemoryStream.repr(bs)));
+				log.info(String.format("%-15s", MemoryStream.repr(bs)));
 			}
 		}
 	}
@@ -148,10 +150,8 @@ public class Link {
 			}else{
 				break;
 			}
-			// System.out.println("size: " + size + " idx: " + idx + " left: " + (input.size - idx));
 
 			byte[] data = input.copyOfRange(data_idx, data_idx + size);
-			//System.out.println("size: " + size + " data: " + data.length);
 			list.add(data);
 		}
 		return null;

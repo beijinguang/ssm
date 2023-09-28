@@ -79,7 +79,7 @@ public class SSDBProxyService {
 		String[] array = addressList.split(";");
 		int counter = 0;
 		for (String s : array) {
-			String subArray[] = s.split(":");
+			String[] subArray = s.split(":");
 			String ip = subArray[0];
 			int port = Integer.parseInt(subArray[1]);
 			if (singleMaster && counter == 0) {
@@ -94,6 +94,7 @@ public class SSDBProxyService {
 			counter++;
 		}
 		new Thread("SSDBProxyService-keepalive") {
+			@Override
 			public void run() {
 				while (!stop.get()) {
 					try {

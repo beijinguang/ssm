@@ -400,7 +400,6 @@ public class SSDB{
 		setx(key.getBytes(), val.getBytes(), String.valueOf(time).getBytes());
 	}
 	public void multi_hset(byte[]... pairs)throws Exception{
-		//System.out.println(pairs);
 		Response resp=link.request("multi_hset",pairs);
 		if(resp.ok()){
 			return;
@@ -409,7 +408,6 @@ public class SSDB{
 	}
 	
 	public void multi_hset(String... pairs)throws Exception{
-		//System.out.println(pairs);
 		Response resp=link.request("multi_hset",pairs);
 		if(resp.ok()){
 			return;
